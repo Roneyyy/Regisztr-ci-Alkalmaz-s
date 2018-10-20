@@ -38,16 +38,10 @@ namespace RegisztracioAlkalmazas
                     Ferfi.Checked = false;
                     No.Checked = true;
                 }
-                if (hobbi.Items.Contains(open[3]))
-                {
-                    int index = hobbi.FindString(open[3]);
-                    hobbi.SetSelected(index,true);
-                }
-                else
-                {
+                if (!hobbi.Items.Contains(open[3]))
+                { 
                     hobbi.Items.Add(open[3]);
-                    int index = hobbi.FindString(open[3]);
-                    hobbi.SelectedItem = index;
+                    
                 }
                 if (open.Length>4)
                 {
@@ -57,6 +51,8 @@ namespace RegisztracioAlkalmazas
                         hobbi.Items.Add(open[i]);
                     }
                 }
+                int index = hobbi.FindString(open[3]);
+                hobbi.SetSelected(index, true);
 
             }
         }
