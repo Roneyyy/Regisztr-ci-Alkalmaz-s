@@ -25,7 +25,10 @@ namespace RegisztracioAlkalmazas
             if (openFileDialog.ShowDialog(this) == DialogResult.OK)
             {
                 string tartalom = File.ReadAllText(openFileDialog.FileName);
-                string[] open = tartalom.Split(';');
+                string[] open = tartalom.Split(
+                new[] { "\r\n", "\r", "\n",";" },
+                StringSplitOptions.None
+                    );
                 nevtext.Text = open[0];
                 szuldate.Value = Convert.ToDateTime(open[1]);
                 if (open[2]=="F")
@@ -69,7 +72,7 @@ namespace RegisztracioAlkalmazas
                 {
                     tartalom += "N;";
                 }
-                tartalom += hobbi.SelectedItem.ToString()+";";
+                tartalom += hobbi.SelectedItem.ToString()+Environment.NewLine;
                 List<String> list = new List<String>();
 
                 foreach (String strCol in hobbi.Items)
